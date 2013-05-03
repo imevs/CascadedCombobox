@@ -1,0 +1,3 @@
+[submodule "libs/extjs"]
+	path = libs/extjs
+	url = https://github.com/imevs/extjs.git
