@@ -1,3 +1,6 @@
 [submodule "libs/extjs"]
 	path = libs/extjs
 	url = https://github.com/imevs/extjs.git
+[submodule "libs/siesta"]
+	path = libs/siesta
+	url = https://github.com/imevs/siesta-1.1.5-lite.git
