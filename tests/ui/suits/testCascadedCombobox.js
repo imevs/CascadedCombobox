@@ -9,6 +9,8 @@ StartTest(function(t) {
             t.click(cmb.el.query('.x-trigger-cell')[ 0 ]);
             t.click(cmb.getPicker().getNode(0), next);
 
+            t.ok(false);
+
             next();
         }
 

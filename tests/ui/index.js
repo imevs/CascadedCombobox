@@ -1,5 +1,13 @@
 var Harness = Siesta.Harness.Browser;
 
+function isEmpty(map) {
+    for(var key in map) {
+        if (map.hasOwnProperty(key)) {
+            return false;
+        }
+    }
+    return true;
+}
 
 Role('Siesta.Test.OverridedExtJS', {
     isa: Siesta.Test.ExtJS,
@@ -43,7 +51,31 @@ Harness.configure({
     preload : [
         'hacks.js'
 //        '../../../resources/sinon-1.5.2.js'
-    ]
+    ],
+
+    autoRun: true,
+    viewDOM: true,
+
+    generateJSONReport: function() {
+        var allPassed       = true;
+        var me              = this;
+
+        if (isEmpty(me.testsByURL)) return 0;
+
+        Joose.A.each(me.flattenDescriptors(me.descriptors), function (descriptor) {
+            // if at least one test is missing then something is wrong
+            if (descriptor.isMissing) { allPassed = false; return false }
+
+            var test    = me.getTestByURL(descriptor.url);
+
+            // ignore missing tests (could be skipped by test filtering
+            if (!test) return;
+
+            allPassed = allPassed && test.isPassed()
+        });
+
+        return allPassed
+    }
 });
 
 
