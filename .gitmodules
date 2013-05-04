@@ -4,3 +4,6 @@
 [submodule "libs/siesta"]
 	path = libs/siesta
 	url = https://github.com/imevs/siesta-1.1.5-lite.git
+[submodule "resources/js-test-driver-phantomjs"]
+	path = resources/js-test-driver-phantomjs
+	url = https://github.com/imevs/js-test-driver-phantomjs.git
