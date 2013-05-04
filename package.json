@@ -7,11 +7,6 @@
     "scripts": {
         "test": "java -jar resources/JsTestDriver-1.3.5.jar --config jsTestDriver.conf --tests all --reset"
     },
-    "main": "./lib/PubSub.js",
-    "repository": {
-        "type": "git",
-        "url":  "git@github.com:danielmlipton/pubsub.git"
-    },
     "devDependencies": {
         "phantomjs":     "0.2.x"
     },
