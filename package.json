@@ -5,13 +5,10 @@
     "author": "Vitaliy Medvedev <medvedev.vs@gmail.com>",
     "description": "ExtJs component CascadedCombobox",
     "scripts": {
-        "test": "java -jar resources/JsTestDriver-1.3.5.jar --config jsTestDriver.conf --tests all --reset",
-        "pretest": "node tests/ui/node-server.js",
-        "posttest": "phantomjs tests/ui/siesta-phantomjs.js && kill -9 `cat tests/ui/pid.txt` && rm tests/ui/pid.txt"
+        "test": "java -jar resources/JsTestDriver-1.3.5.jar --config jsTestDriver.conf --tests all --reset"
     },
     "devDependencies": {
-        "phantomjs":     "0.2.x",
-        "connect": "2.1.3"
+        "phantomjs":     "0.2.x"
     },
     "analyze": false,
     "license": "MIT",
