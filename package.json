@@ -6,7 +6,8 @@
     "description": "ExtJs component CascadedCombobox",
     "scripts": {
         "test": "java -jar resources/JsTestDriver-1.3.5.jar --config jsTestDriver.conf --tests all --reset",
-        "posttest": "node tests/ui/node-server.js && phantomjs tests/ui/siesta-phantomjs.js && kill -9 `cat tests/ui/pid.txt` && rm tests/ui/pid.txt"
+        "pretest": "node tests/ui/node-server.js",
+        "posttest": "phantomjs tests/ui/siesta-phantomjs.js && kill -9 `cat tests/ui/pid.txt` && rm tests/ui/pid.txt"
     },
     "devDependencies": {
         "phantomjs":     "0.2.x",
