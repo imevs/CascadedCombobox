@@ -11,4 +11,4 @@ before_script:
   - npm install connect
   - "node tests/ui/node-server.js &"
   - "sleep 3"
-script: phantomjs tests/ui/siesta-phantomjs.js
+#script: phantomjs tests/ui/siesta-phantomjs.js
