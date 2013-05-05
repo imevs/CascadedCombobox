@@ -1,5 +1,5 @@
 var page = require('webpage').create();
-var url = 'http://localhost/CascadedCombobox/tests/ui/';
+var url = 'http://localhost:3000/CascadedCombobox/tests/ui/';
 var captureAttempts = 0;
 var captured = false;
 var locked = false;
