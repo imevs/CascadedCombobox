@@ -8,7 +8,7 @@ before_script:
   - "sleep 3"
   - "phantomjs resources/js-test-driver-phantomjs/phantomjs-jstd.js &"
   - "sleep 3"
-  - npm install connect
+  - "npm install connect"
   - "node tests/ui/node-server.js &"
   - "sleep 3"
 #script: phantomjs tests/ui/siesta-phantomjs.js

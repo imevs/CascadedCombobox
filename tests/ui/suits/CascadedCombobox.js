@@ -11,21 +11,32 @@ var countryStore = Ext.create('Ext.data.Store', {
     ]
 });
 var cityStore = Ext.create('Ext.data.Store', {
-    fields: ['name', 'value'],
+    fields: ['name', 'value', 'country'],
     data: [
-        {name: 'Moscow', value: 1, ref: 1},
-        {name: 'Orsk', value: 2, ref: 1}
+        {name: 'Moscow', value: 1, country: 1},
+        {name: 'Orsk', value: 2, country: 2}
     ]
 });
 
 Ext.onReady(function() {
-    Ext.create('IMEVS.ux.CascadedCombobox', {
-        labels: [
-            'Countries', 'Cities'
-        ],
-        stores: [
-            countryStore, cityStore
-        ],
-        renderTo: Ext.getBody()
+    var country = Ext.create('IMEVS.ux.CascadedCombobox', {
+        fieldLabel: 'Country',
+        store: countryStore,
+        renderTo: Ext.getBody(),
+        queryMode: 'local',
+        displayField: 'name',
+        valueField: 'value'
     });
+
+    var city = Ext.create('IMEVS.ux.CascadedCombobox', {
+        fieldLabel: 'City',
+        store: cityStore,
+        renderTo: Ext.getBody(),
+        queryMode: 'local',
+        displayField: 'name',
+        valueField: 'value',
+        dependencyField: 'country',
+        dependsOn: country
+    });
+
 });
