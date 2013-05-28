@@ -1,29 +1,21 @@
 Ext.define('IMEVS.ux.CascadedCombobox', {
     extend: 'Ext.form.field.ComboBox',
     alias: 'widget.cascadedcombobox',
+    plugins: [
+        Ext.create('IMEVS.ux.Cascadable'),
+        Ext.create('IMEVS.ux.AutoDiscover'),
+        Ext.create('IMEVS.ux.FetchFromRequest'),
+        Ext.create('IMEVS.ux.SaveToCookie')
+    ],
 
     config: {
-        linkKey: 'id'
+        saveToCookie: false,
+        autoDiscoverValues: false,
+        fetchValuesFromRequests: false
     },
 
     initComponent: function() {
         var me = this;
-
-        if (me.dependsOn) {
-            me.dependsOn.on('change', function() {
-               me.store.load();
-            });
-
-            var filter = function(item) {
-                var curVal = me.dependsOn.getValue();
-                return curVal && item.get(me.dependencyField) == curVal;
-            };
-
-            me.store.filters = new Ext.util.MixedCollection();
-            me.store.filters.addAll(me.store.decodeFilters([filter]));
-            me.store.load();
-        }
-
         me.callParent();
     }
 

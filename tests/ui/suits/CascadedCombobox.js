@@ -1,5 +1,6 @@
 Ext.Loader.setPath('IMEVS', '../../app');
 Ext.Loader.setConfig({ enabled: true, syncModeEnabled: true });
+Ext.require('IMEVS.ux.CascadedCombobox');
 
 var countryStore = Ext.create('Ext.data.Store', {
     fields: ['name', 'value'],
