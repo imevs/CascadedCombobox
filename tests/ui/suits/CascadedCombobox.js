@@ -22,6 +22,7 @@ var cityStore = Ext.create('Ext.data.Store', {
 Ext.onReady(function() {
     var country = Ext.create('IMEVS.ux.CascadedCombobox', {
         fieldLabel: 'Country',
+        fetchValuesFromRequests: true,
         store: countryStore,
         renderTo: Ext.getBody(),
         queryMode: 'local',
@@ -31,6 +32,7 @@ Ext.onReady(function() {
 
     var city = Ext.create('IMEVS.ux.CascadedCombobox', {
         fieldLabel: 'City',
+        fetchValuesFromRequests: true,
         store: cityStore,
         renderTo: Ext.getBody(),
         queryMode: 'local',

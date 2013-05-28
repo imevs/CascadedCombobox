@@ -1,7 +1,9 @@
 Ext.define('IMEVS.ux.FetchFromRequest', {
 
+    location: location,
+
     getQueryParams: function() {
-        var params = Ext.Object.fromQueryString(location.search.substring(1));
+        var params = Ext.Object.fromQueryString(this.location.search.substring(1));
         var paramsWithKeyInLowerCase = {};
         for (var param in params) if (params.hasOwnProperty(param)) {
             paramsWithKeyInLowerCase[param.toLowerCase()] = params[param];
@@ -14,9 +16,13 @@ Ext.define('IMEVS.ux.FetchFromRequest', {
             return;
         }
 
-        var queryParams = this.getQueryParams();
+        var queryParams = this.getQueryParams(), value, record;
         for (var queryParam in queryParams) if (queryParams.hasOwnProperty(queryParam)) {
-            cmb.setFilterValue(queryParam, queryParams[queryParam]);
+            if (queryParam === cmb.fieldLabel.toLowerCase()) {
+                value = queryParams[queryParam];
+                record = cmb.getStore().findRecord('name', value);
+                record && cmb.select(record);
+            }
         }
     }
 });
