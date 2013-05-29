@@ -4,21 +4,20 @@ Ext.define('IMEVS.ux.AutoDiscover', {
         return 'All';
     },
 
-    getDefaultComboboxValue: function() {
-        var me = this;
+    getDefaultComboboxValue: function(cmb) {
+        var me = cmb;
 
         var name = me.fieldLabel,
-            cookieValue = this.getStorage().get(name),
             range = me.getStore().getRange(),
             options = Ext.pluck(Ext.pluck(range, 'data'), 'name'),
-            defaultValue = me.getDefaultValue();
+            defaultValue = this.getDefaultValue();
 
         if (options.length == 1) {
             return options[0];
         }
-        if (cookieValue && Ext.Array.contains(options, cookieValue)) {
-            return cookieValue;
-        }
+//        if (cookieValue && Ext.Array.contains(options, cookieValue)) {
+//            return cookieValue;
+//        }
         if (defaultValue && Ext.Array.contains(options, defaultValue)) {
             return defaultValue;
         }
@@ -28,22 +27,22 @@ Ext.define('IMEVS.ux.AutoDiscover', {
         return false;
     },
 
+    onLoad: function(store, records, successfull, opts) {
+        var cmb = opts.element;
+        var param = this.getDefaultComboboxValue(cmb);
+        if (!param) return;
+
+        var record = cmb.getStore().findRecord('name', param);
+        if (!record) return;
+
+        cmb.select(record);
+    },
+
     init: function(cmb) {
         if (!cmb.autoDiscoverValues) {
             return;
         }
-
-        cmb.store.on('load', function() {
-            var param = cmb.getDefaultComboboxValue();
-            if (!param) return;
-
-            var record = cmb.getStore().findRecord('name', param);
-            if (!record) return;
-
-            cmb.select(record);
-            cmb.fireEvent('select', cmb, [record]);
-            cmb.setValue(me.getDefaultComboboxValue());
-        });
-
+        var isLocalMode = cmb.queryMode === 'local';
+        cmb.getStore().on('load', this.onLoad, this, {element: cmb});
     }
 });
