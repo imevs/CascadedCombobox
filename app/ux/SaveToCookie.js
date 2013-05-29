@@ -20,7 +20,7 @@ Ext.define('IMEVS.ux.SaveToCookie', {
         return this.getStorage().get(opts.element.fieldLabel.toLowerCase());
     },
 
-    onLoad: function(store, opts) {
+    onLoad: function(store, records, successfull, opts) {
         var value = this.getStorageValue(opts);
         var record = store.findRecord('name', value);
         opts.element.select(record);
@@ -31,9 +31,10 @@ Ext.define('IMEVS.ux.SaveToCookie', {
             return;
         }
         cmb.on('select', this.onSelect, this);
+
         var isLocalMode = cmb.queryMode === 'local';
         if (isLocalMode) {
-            this.onLoad(cmb.getStore(), { element: cmb });
+            this.onLoad(cmb.getStore(), [], true, { element: cmb });
         } else {
             cmb.getStore().on('load', this.onLoad, this, { single: true, element: cmb });
         }
