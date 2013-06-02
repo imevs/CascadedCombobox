@@ -13,6 +13,7 @@ function runSandbox() {
     var countryStore = Ext.create('Ext.data.Store', {
         fields: ['name', 'value'],
         data: [
+            {name: 'All', value: 0},
             {name: 'Russia', value: 1},
             {name: 'England', value: 2},
             {name: 'USA', value: 3},

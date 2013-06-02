@@ -1,30 +1,32 @@
 Ext.define('IMEVS.ux.AutoDiscover', {
 
     getDefaultValue: function() {
-        return 'All';
+        return this.cmb.getDefaultValue();
+    },
+
+    getStaticDefaultValue: function() {
+        return this.cmb.statics().defaultValue;
     },
 
     getDefaultComboboxValue: function(cmb) {
-        var me = cmb;
-
-        var name = me.fieldLabel,
-            range = me.getStore().getRange(),
-            options = Ext.pluck(Ext.pluck(range, 'data'), 'name'),
-            defaultValue = this.getDefaultValue();
+        var name = cmb.fieldLabel, options = this.getOptions(cmb);
 
         if (options.length == 1) {
             return options[0];
         }
-//        if (cookieValue && Ext.Array.contains(options, cookieValue)) {
-//            return cookieValue;
-//        }
-        if (defaultValue && Ext.Array.contains(options, defaultValue)) {
-            return defaultValue;
-        }
-        if (Ext.Array.contains(options, 'All')) {
-            return 'All';
-        }
-        return false;
+        return this.getVal(options, this.getDefaultValue()) ||
+//               this.getVal(options, cmb.getStaticDefaultValue()) ||
+               this.getVal(options, this.getStaticDefaultValue()) ||
+               false;
+    },
+
+    getOptions: function(cmb) {
+        var range = cmb.getStore().getRange();
+        return Ext.pluck(Ext.pluck(range, 'data'), 'name');
+    },
+
+    getVal: function(opt, v) {
+        return v && Ext.Array.contains(opt, v) ? v : false;
     },
 
     onLoad: function(store, records, successfull, opts) {
@@ -42,7 +44,12 @@ Ext.define('IMEVS.ux.AutoDiscover', {
         if (!cmb.autoDiscoverValues) {
             return;
         }
+        this.cmb = cmb;
         var isLocalMode = cmb.queryMode === 'local';
-        cmb.getStore().on('load', this.onLoad, this, {element: cmb});
+        if (isLocalMode) {
+            this.onLoad(cmb.getStore(), [], true, { element: cmb });
+        } else {
+            cmb.getStore().on('load', this.onLoad, this, {element: cmb});
+        }
     }
 });

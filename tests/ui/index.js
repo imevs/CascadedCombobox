@@ -40,7 +40,6 @@ Role('Siesta.Test.OverridedExtJS', {
 Harness.configure({
     title     : 'Sencha UI Test Demo - Application Tests',
 
-//    hostPageUrl: '../../../index.html',
     overrideSetTimeout: false,
 
     testClass   : Siesta.Test.OverridedExtJS,

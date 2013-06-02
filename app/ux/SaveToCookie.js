@@ -23,7 +23,7 @@ Ext.define('IMEVS.ux.SaveToCookie', {
     onLoad: function(store, records, successfull, opts) {
         var value = this.getStorageValue(opts);
         var record = store.findRecord('name', value);
-        opts.element.select(record);
+        record && opts.element.select(record);
     },
 
     init: function(cmb) {
