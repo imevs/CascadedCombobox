@@ -1,6 +1,6 @@
-Ext.define('IMEVS.ux.SaveToCookie', {
+Ext.require('Ext.util.Cookies');
 
-    requires: ['Ext.util.Cookies'],
+Ext.define('IMEVS.ux.SaveToCookie', {
 
     storage: null,
 
