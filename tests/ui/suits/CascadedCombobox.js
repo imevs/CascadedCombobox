@@ -24,7 +24,31 @@ function runSandbox() {
         fields: ['name', 'value', 'country'],
         data: [
             {name: 'Moscow', value: 1, country: 1},
-            {name: 'Orsk', value: 2, country: 2}
+            {name: 'Orsk', value: 2, country: 1},
+            {name: 'Spb', value: 3, country: 1},
+            {name: 'London', value: 4, country: 2}
+        ]
+    });
+    var regionStore = Ext.create('Ext.data.Store', {
+        fields: ['name', 'value', 'country'],
+        data: [
+            {name: 'Moskovskaya', value: 1, country: 1},
+            {name: 'Orlovskaya', value: 2, country: 1},
+            {name: 'Orenburgskaya', value: 3, country: 1},
+            {name: 'Columbia', value: 4, country: 3},
+            {name: 'Filadelfia', value: 5, country: 3}
+        ]
+    });
+    var streetStore = Ext.create('Ext.data.Store', {
+        fields: ['name', 'value', 'city'],
+        data: [
+            {name: 'Lenina', value: 1, city: 2},
+            {name: 'Chkalova', value: 2, city: 2},
+            {name: 'Novaya', value: 3, city: 2},
+            {name: 'Tereshkova', value: 4, city: 2},
+            {name: 'Ligovskiy', value: 5, city: 3},
+            {name: 'Dumskaya', value: 6, city: 3},
+            {name: 'Nevsky', value: 7, city: 3}
         ]
     });
 

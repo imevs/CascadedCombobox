@@ -1,6 +1,6 @@
 StartTest(function(t) {
 
-    //t.hostPageUrl = 'cascadedCombobox.html?Country=England&city=Orsk';
+    //t.hostPageUrl = 'cascadedCombobox.html?Country=England&city=London';
 
     t.chain(
         {
@@ -12,7 +12,7 @@ StartTest(function(t) {
             var cmbCity = comboboxes[1];
 
             t.is(cmbCountry.getRawValue(), 'England');
-            t.is(cmbCity.getRawValue(), 'Orsk');
+            t.is(cmbCity.getRawValue(), 'London');
         }
     );
 

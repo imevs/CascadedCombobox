@@ -9,13 +9,12 @@ Ext.define('IMEVS.ux.AutoDiscover', {
     },
 
     getDefaultComboboxValue: function(cmb) {
-        var name = cmb.fieldLabel, options = this.getOptions(cmb);
+        var options = this.getOptions(cmb);
 
         if (options.length == 1) {
             return options[0];
         }
         return this.getVal(options, this.getDefaultValue()) ||
-//               this.getVal(options, cmb.getStaticDefaultValue()) ||
                this.getVal(options, this.getStaticDefaultValue()) ||
                false;
     },
@@ -30,6 +29,8 @@ Ext.define('IMEVS.ux.AutoDiscover', {
     },
 
     onLoad: function(store, records, successfull, opts) {
+        Ext.log('IMEVS.ux.Cascadable >> onLoad');
+
         var cmb = opts.element;
         var param = this.getDefaultComboboxValue(cmb);
         if (!param) return;
@@ -48,8 +49,7 @@ Ext.define('IMEVS.ux.AutoDiscover', {
         var isLocalMode = cmb.queryMode === 'local';
         if (isLocalMode) {
             this.onLoad(cmb.getStore(), [], true, { element: cmb });
-        } else {
-            cmb.getStore().on('load', this.onLoad, this, {element: cmb});
         }
+        cmb.getStore().on('load', this.onLoad, this, {element: cmb});
     }
 });

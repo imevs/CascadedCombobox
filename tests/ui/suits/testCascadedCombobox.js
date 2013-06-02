@@ -12,13 +12,13 @@ StartTest(function(t) {
 
             next();
         },
+        // select Russia
         function(next) {
             var comboboxes = t.cq('cascadedcombobox');
             var cmbCountry = comboboxes[0];
 
-            // select first country
             t.click(cmbCountry.el.query('.x-trigger-cell')[ 0 ]);
-            t.click(cmbCountry.getPicker().getNode(0), next);
+            t.click(cmbCountry.getPicker().getNode(1), next);
         },
         function(next) {
             var comboboxes = t.cq('cascadedcombobox');
@@ -29,24 +29,24 @@ StartTest(function(t) {
             var comboboxes = t.cq('cascadedcombobox');
             var cmbCity = comboboxes[1];
 
-            t.is(cmbCity.getPicker().getNodes().length, 1);
+            t.is(cmbCity.getPicker().getNodes().length, 3);
             t.is(cmbCity.getPicker().getNode(0).textContent, 'Moscow');
 
             next();
         },
 
+        // select England
         function(next) {
             var comboboxes = t.cq('cascadedcombobox');
             var cmbCountry = comboboxes[0];
 
-            // select first country
             t.click(cmbCountry.el.query('.x-trigger-cell')[ 0 ], next);
         },
         function(next) {
             var comboboxes = t.cq('cascadedcombobox');
             var cmbCountry = comboboxes[0];
 
-            t.click(cmbCountry.getPicker().getNode(1), next);
+            t.click(cmbCountry.getPicker().getNode(2), next);
         },
         function(next) {
             var comboboxes = t.cq('cascadedcombobox');
@@ -54,8 +54,27 @@ StartTest(function(t) {
             t.click(cmbCity.el.query('.x-trigger-cell')[ 0 ]);
 
             t.is(cmbCity.getPicker().getNodes().length, 1);
-            t.is(cmbCity.getPicker().getNode(0).textContent, 'Orsk');
+            t.is(cmbCity.getPicker().getNode(0).textContent, 'London');
+            next();
+        },
+
+        // select Russia again
+        function(next) {
+            var comboboxes = t.cq('cascadedcombobox');
+            var cmbCountry = comboboxes[0];
+            t.click(cmbCountry.el.query('.x-trigger-cell')[ 0 ], next);
+        },
+        function(next) {
+            var comboboxes = t.cq('cascadedcombobox');
+            var cmbCountry = comboboxes[0];
+            t.click(cmbCountry.getPicker().getNode(1), next);
+        },
+        function(next) {
+            var comboboxes = t.cq('cascadedcombobox');
+            var cmbCity = comboboxes[1];
+            t.is(cmbCity.getRawValue(), '');
         }
+
 
     );
 

@@ -6,6 +6,8 @@ Ext.define('IMEVS.ux.Cascadable', {
         }
 
         cmb.dependsOn.on('change', function () {
+            Ext.log('IMEVS.ux.Cascadable >> change');
+            cmb.setValue(null);
             cmb.store.load();
         });
 

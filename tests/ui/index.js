@@ -102,7 +102,7 @@ Harness.start(
             },
             {
                 title: 'Test CascadedCombobox FetchFromRequest.js',
-                hostPageUrl: 'cascadedCombobox.html?Country=England&city=Orsk',
+                hostPageUrl: 'cascadedCombobox.html?Country=England&city=London',
                 url: 'suits/testFetchFromRequest.js'
             }
         ]

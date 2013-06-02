@@ -9,25 +9,26 @@ StartTest(function(t) {
             var cmbCountry = comboboxes[0];
             var cmbCity = comboboxes[1];
 
-            t.is(cmbCountry.getRawValue(), '');
+            t.is(cmbCountry.getRawValue(), 'All');
             t.is(cmbCity.getRawValue(), '');
 
             next();
         },
+        // select England
         function(next) {
             var comboboxes = t.cq('cascadedcombobox');
             var cmbCountry = comboboxes[0];
 
             t.click(cmbCountry.el.query('.x-trigger-cell')[ 0 ]);
-            t.click(cmbCountry.getPicker().getNode(0), next);
+            t.click(cmbCountry.getPicker().getNode(2), next);
         },
         function(next) {
             var comboboxes = t.cq('cascadedcombobox');
             var cmbCountry = comboboxes[0];
             var cmbCity = comboboxes[1];
 
-            t.is(cmbCountry.getRawValue(), 'Russia');
-            t.is(cmbCity.getRawValue(), 'Moscow');
+            t.is(cmbCountry.getRawValue(), 'England');
+            t.is(cmbCity.getRawValue(), 'London');
         }
     );
 
