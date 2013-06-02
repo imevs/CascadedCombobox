@@ -1,23 +1,24 @@
 Ext.define('IMEVS.ux.Cascadable', {
 
+    onChangeParent: function() {
+        Ext.log('IMEVS.ux.Cascadable >> change');
+        this.setValue(null);
+        this.store.load();
+    },
+
+    filterCallback: function (item) {
+        var curVal = this.dependsOn.getValue();
+        return curVal && item.get(this.dependencyField) == curVal;
+    },
+
     init: function(cmb) {
         if (!cmb.dependsOn) {
             return;
         }
-
-        cmb.dependsOn.on('change', function () {
-            Ext.log('IMEVS.ux.Cascadable >> change');
-            cmb.setValue(null);
-            cmb.store.load();
-        });
-
-        var filter = function (item) {
-            var curVal = cmb.dependsOn.getValue();
-            return curVal && item.get(cmb.dependencyField) == curVal;
-        };
-
+        cmb.dependsOn.on('change', this.onChangeParent, cmb);
         cmb.store.filters = new Ext.util.MixedCollection();
-        cmb.store.filters.addAll(cmb.store.decodeFilters([filter]));
+        var filters = cmb.store.decodeFilters([Ext.bind(this.filterCallback, cmb)]);
+        cmb.store.filters.addAll(filters);
         cmb.store.load();
     }
 });

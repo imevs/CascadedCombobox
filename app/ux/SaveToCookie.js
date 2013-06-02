@@ -13,7 +13,7 @@ Ext.define('IMEVS.ux.SaveToCookie', {
     },
 
     onSelect: function(element, records) {
-        this.setFilterValue(element.fieldLabel, records[0].get('name'));
+        records.length && this.setFilterValue(element.fieldLabel, records[0].get('name'));
     },
 
     getStorageValue: function (opts) {
@@ -26,10 +26,19 @@ Ext.define('IMEVS.ux.SaveToCookie', {
         record && opts.element.select(record);
     },
 
+    createOnSelectParentListener: function() {
+        return function(parent, records, child) {
+            Ext.log('createOnSelectParentListener: ' + child.fieldLabel);
+            this.getStorage().clear(child.fieldLabel.toLowerCase());
+            child.fireEvent('select', child, []);
+        }
+    },
+
     init: function(cmb) {
         if (!cmb.saveToCookie) {
             return;
         }
+        cmb.dependsOn && cmb.dependsOn.on('select', this.createOnSelectParentListener(), this, cmb);
         cmb.on('select', this.onSelect, this);
 
         var isLocalMode = cmb.queryMode === 'local';
