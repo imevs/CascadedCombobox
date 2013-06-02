@@ -77,6 +77,34 @@ function runSandbox() {
         dependencyField: 'country',
         dependsOn: country
     });
+
+    var street = Ext.create('IMEVS.ux.CascadedCombobox', {
+        fieldLabel: 'Street',
+        fetchValuesFromRequests: true,
+        saveToCookie: true,
+        autoDiscoverValues: true,
+        store: streetStore,
+        renderTo: Ext.getBody(),
+        queryMode: 'local',
+        displayField: 'name',
+        valueField: 'value',
+        dependencyField: 'city',
+        dependsOn: city
+    });
+
+    var region = Ext.create('IMEVS.ux.CascadedCombobox', {
+        fieldLabel: 'Region',
+        fetchValuesFromRequests: true,
+        saveToCookie: true,
+        autoDiscoverValues: true,
+        store: regionStore,
+        renderTo: Ext.getBody(),
+        queryMode: 'local',
+        displayField: 'name',
+        valueField: 'value',
+        dependencyField: 'country',
+        dependsOn: country
+    });
 }
 
 Ext.onReady(runSandbox);
