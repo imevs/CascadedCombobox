@@ -81,13 +81,25 @@ Harness.configure({
 
 Harness.start(
     {
-        group       : 'Basic application layout',
+        group: 'Basic application layout',
+        preload: [
+            'suits/CascadedCombobox.js'
+        ],
 
-        items       : [
+        items: [
             {
                 title: 'Test CascadedCombobox',
                 hostPageUrl: 'cascadedCombobox.html',
                 url: 'suits/testCascadedCombobox.js'
+            },
+            {
+                preload: [
+                    'suits/clearCookie.js',
+                    'suits/CascadedCombobox.js'
+                ],
+                title: 'Test CascadedCombobox AutoDiscover',
+                hostPageUrl: 'cascadedCombobox.html',
+                url: 'suits/testAutoDiscover.js'
             },
             {
                 title: 'Test CascadedCombobox FetchFromRequest.js',
