@@ -4,6 +4,10 @@ var captureAttempts = 0;
 var captured = false;
 var locked = false;
 
+page.onConsoleMessage = function(msg, line, source) {
+    console.log(msg);
+};
+
 var log = function(str) {
     var dt = new Date();
     console.log(dt.toString() + ': ' + str);

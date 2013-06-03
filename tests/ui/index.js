@@ -78,7 +78,6 @@ Harness.configure({
         });
 
         return {
-            description: me.descriptors,
             status: allPassed,
             report: JSON.stringify(report)
         }
@@ -90,27 +89,23 @@ Harness.start(
     {
         group: 'Basic application layout',
         preload: [
-//            'suits/CascadedCombobox.js'
+            'suits/CascadedCombobox.js'
         ],
-
         items: [
-            {
-/*
-                preload: [
-                    'suits/clearCookie.js',
-                    'suits/CascadedCombobox.js'
-                ],
-*/
-                title: 'Test CascadedCombobox AutoDiscover',
-                hostPageUrl: 'cascadedCombobox.html',
-                url: 'suits/testAutoDiscover.js'
-            },
             {
                 title: 'Test CascadedCombobox',
                 hostPageUrl: 'cascadedCombobox.html',
                 url: 'suits/testCascadedCombobox.js'
             },
-
+            {
+                preload: [
+                    'suits/clearCookie.js',
+                    'suits/CascadedCombobox.js'
+                ],
+                title: 'Test CascadedCombobox AutoDiscover',
+                hostPageUrl: 'cascadedCombobox.html',
+                url: 'suits/testAutoDiscover.js'
+            },
             {
                 title: 'Test CascadedCombobox FetchFromRequest.js',
                 hostPageUrl: 'cascadedCombobox.html?Country=England&city=London',
