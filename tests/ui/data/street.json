@@ -1,0 +1,11 @@
+{
+    "items": [
+        {"name": "Lenina", "value": 1, "city": 2},
+        {"name": "Chkalova", "value": 2, "city": 2},
+        {"name": "Novaya", "value": 3, "city": 2},
+        {"name": "Tereshkova", "value": 4, "city": 2},
+        {"name": "Ligovskiy", "value": 5, "city": 3},
+        {"name": "Dumskaya", "value": 6, "city": 3},
+        {"name": "Nevsky", "value": 7, "city": 3}
+    ]
+}

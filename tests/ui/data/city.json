@@ -1,0 +1,8 @@
+{
+    "items": [
+        {"name": "Moscow", "value": 1, "country": 1},
+        {"name": "Orsk", "value": 2, "country": 1},
+        {"name": "Spb", "value": 3, "country": 1},
+        {"name": "London", "value": 4, "country": 2}
+    ]
+}

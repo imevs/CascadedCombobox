@@ -1,0 +1,9 @@
+{
+    "items": [
+        {"name": "All", "value": 0},
+        {"name": "Russia", "value": 1},
+        {"name": "England", "value": 2},
+        {"name": "USA", "value": 3},
+        {"name": "German", "value": 4}
+    ]
+}

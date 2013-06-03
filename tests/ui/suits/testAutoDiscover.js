@@ -19,8 +19,9 @@ StartTest(function(t) {
             var comboboxes = t.cq('cascadedcombobox');
             var cmbCountry = comboboxes[0];
 
-            t.click(cmbCountry.el.query('.x-trigger-cell')[ 0 ]);
-            t.click(cmbCountry.getPicker().getNode(2), next);
+            t.click(cmbCountry.el.query('.x-trigger-cell')[ 0 ], function() {
+                t.click(cmbCountry.getPicker().getNode(2), next);
+            });
         },
         function(next) {
             var comboboxes = t.cq('cascadedcombobox');

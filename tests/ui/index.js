@@ -87,9 +87,9 @@ Harness.configure({
 
 Harness.start(
     {
-        group: 'Basic application layout',
+        group: 'CascadedCombobox with local stores',
         preload: [
-            'suits/CascadedCombobox.js'
+            'suits/CascadedCombobox_localStores.js'
         ],
         items: [
             {
@@ -100,7 +100,7 @@ Harness.start(
             {
                 preload: [
                     'suits/clearCookie.js',
-                    'suits/CascadedCombobox.js'
+                    'suits/CascadedCombobox_localStores.js'
                 ],
                 title: 'Test CascadedCombobox AutoDiscover',
                 hostPageUrl: 'cascadedCombobox.html',
@@ -114,4 +114,36 @@ Harness.start(
 
         ]
     }
+
+/*
+    {
+        group: 'CascadedCombobox with remote stores',
+        preload: [
+            'suits/CascadedCombobox_remoteStores.js'
+        ],
+        items: [
+            {
+                title: 'Test CascadedCombobox',
+                hostPageUrl: 'cascadedCombobox.html',
+                url: 'suits/testCascadedCombobox.js'
+            },
+            {
+                preload: [
+                    'suits/clearCookie.js',
+                    'suits/CascadedCombobox_remoteStores.js'
+                ],
+                title: 'Test CascadedCombobox AutoDiscover',
+                hostPageUrl: 'cascadedCombobox.html',
+                url: 'suits/testAutoDiscover.js'
+            },
+            {
+                title: 'Test CascadedCombobox FetchFromRequest.js',
+                hostPageUrl: 'cascadedCombobox.html?Country=England&city=London',
+                url: 'suits/testFetchFromRequest.js'
+            }
+
+        ]
+    }
+*/
+
 );

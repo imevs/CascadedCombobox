@@ -11,11 +11,8 @@ Ext.define('IMEVS.ux.FetchFromRequest', {
         return paramsWithKeyInLowerCase;
     },
 
-    init: function(cmb) {
-        if (!cmb.fetchValuesFromRequests) {
-            return;
-        }
-
+    onLoad: function(store, records, successfull, opts) {
+        var cmb = opts.element;
         var queryParams = this.getQueryParams(), value, record;
         for (var queryParam in queryParams) if (queryParams.hasOwnProperty(queryParam)) {
             if (queryParam === cmb.fieldLabel.toLowerCase()) {
@@ -23,6 +20,18 @@ Ext.define('IMEVS.ux.FetchFromRequest', {
                 record = cmb.getStore().findRecord('name', value);
                 record && cmb.select(record);
             }
+        }
+    },
+
+    init: function(cmb) {
+        if (!cmb.fetchValuesFromRequests) {
+            return;
+        }
+        var isLocalMode = cmb.queryMode === 'local';
+        if (isLocalMode) {
+            this.onLoad(cmb.getStore(), [], true, { element: cmb });
+        } else {
+            cmb.getStore().on('load', this.onLoad, this, { single: true, element: cmb });
         }
     }
 });
