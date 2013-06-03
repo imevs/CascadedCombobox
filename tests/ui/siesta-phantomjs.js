@@ -17,20 +17,20 @@ var pageLoaded = function(status) {
             return Siesta.my.activeHarness.generateReport();
         });
 
-        if (typeof runnerFrame !== "boolean") {
+        if (!runnerFrame.report) {
             console.log(runnerFrame);
             locked = false;
-            setTimeout(capture, 3000);
+            setTimeout(capture, 1000);
         } else {
-            console.log(runnerFrame);
+            console.log(runnerFrame.report);
             captured = true;
-            phantom.exit(runnerFrame ? 0 : 1);
+            phantom.exit(runnerFrame.status ? 0 : 1);
         }
     }, 5000);
 };
 
 var capture = function() {
-    if (captureAttempts === 10) {
+    if (captureAttempts === 5) {
         log('Failed to capture JSTD after ' + captureAttempts + ' attempts.');
         phantom.exit();
     }

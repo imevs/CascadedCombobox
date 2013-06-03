@@ -46,6 +46,7 @@ Harness.configure({
 
     viewportWidth               : 800,
     viewportHeight               : 600,
+    //    runCore: 'sequential',
 
     preload : [
         'hacks.js'
@@ -61,19 +62,26 @@ Harness.configure({
 
         if (isEmpty(me.testsByURL)) return 0;
 
+        var report = {};
+
         Joose.A.each(me.flattenDescriptors(me.descriptors), function (descriptor) {
             // if at least one test is missing then something is wrong
+            report[descriptor.url] = false;
             if (descriptor.isMissing) { allPassed = false; return false }
 
             var test    = me.getTestByURL(descriptor.url);
 
             // ignore missing tests (could be skipped by test filtering
             if (!test) return;
-
+            report[descriptor.url] = test.isPassed();
             allPassed = allPassed && test.isPassed()
         });
 
-        return allPassed
+        return {
+            description: me.descriptors,
+            status: allPassed,
+            report: JSON.stringify(report)
+        }
     }
 });
 
@@ -82,29 +90,33 @@ Harness.start(
     {
         group: 'Basic application layout',
         preload: [
-            'suits/CascadedCombobox.js'
+//            'suits/CascadedCombobox.js'
         ],
 
         items: [
             {
-                title: 'Test CascadedCombobox',
-                hostPageUrl: 'cascadedCombobox.html',
-                url: 'suits/testCascadedCombobox.js'
-            },
-            {
+/*
                 preload: [
                     'suits/clearCookie.js',
                     'suits/CascadedCombobox.js'
                 ],
+*/
                 title: 'Test CascadedCombobox AutoDiscover',
                 hostPageUrl: 'cascadedCombobox.html',
                 url: 'suits/testAutoDiscover.js'
             },
             {
+                title: 'Test CascadedCombobox',
+                hostPageUrl: 'cascadedCombobox.html',
+                url: 'suits/testCascadedCombobox.js'
+            },
+
+            {
                 title: 'Test CascadedCombobox FetchFromRequest.js',
                 hostPageUrl: 'cascadedCombobox.html?Country=England&city=London',
                 url: 'suits/testFetchFromRequest.js'
             }
+
         ]
     }
 );
