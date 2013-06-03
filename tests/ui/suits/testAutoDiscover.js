@@ -5,7 +5,6 @@ StartTest(function(t) {
             waitFor: 1000
         },
         function(next) {
-            console.log('1');
             var comboboxes = t.cq('cascadedcombobox');
             var cmbCountry = comboboxes[0];
             var cmbCity = comboboxes[1];
@@ -17,7 +16,6 @@ StartTest(function(t) {
         },
         // select England
         function(next) {
-            console.log('2');
             var comboboxes = t.cq('cascadedcombobox');
             var cmbCountry = comboboxes[0];
 
@@ -25,14 +23,13 @@ StartTest(function(t) {
             t.click(cmbCountry.getPicker().getNode(2), next);
         },
         function(next) {
-            console.log('3');
             var comboboxes = t.cq('cascadedcombobox');
             var cmbCountry = comboboxes[0];
             var cmbCity = comboboxes[1];
 
             t.is(cmbCountry.getRawValue(), 'England');
             t.is(cmbCity.getRawValue(), 'London');
-            console.log('4');
+            next();
         }
     );
 
