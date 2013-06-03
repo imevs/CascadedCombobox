@@ -20,7 +20,7 @@ var pageLoaded = function(status) {
         if (typeof runnerFrame !== "boolean") {
             console.log(runnerFrame);
             locked = false;
-            setTimeout(capture, 1000);
+            setTimeout(capture, 3000);
         } else {
             console.log(runnerFrame);
             captured = true;
@@ -30,7 +30,7 @@ var pageLoaded = function(status) {
 };
 
 var capture = function() {
-    if (captureAttempts === 5) {
+    if (captureAttempts === 10) {
         log('Failed to capture JSTD after ' + captureAttempts + ' attempts.');
         phantom.exit();
     }
