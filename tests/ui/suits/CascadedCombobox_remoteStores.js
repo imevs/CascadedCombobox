@@ -15,7 +15,7 @@ function runSandbox() {
         fields: ["name", "value"],
         proxy: {
             type: "ajax",
-            url: "data/country.json",
+            url: "/tests/ui/data/country.json",
             reader: {
                 type: "json",
                 root: "items"
@@ -27,7 +27,7 @@ function runSandbox() {
         fields: ["name", "value", "country"],
         proxy: {
             type: "ajax",
-            url: "data/city.json",
+            url: "/tests/ui/data/city.json",
             reader: {
                 type: "json",
                 root: "items"
@@ -39,7 +39,7 @@ function runSandbox() {
         fields: ["name", "value", "country"],
         proxy: {
             type: "ajax",
-            url: "data/region.json",
+            url: "/tests/ui/data/region.json",
             reader: {
                 type: "json",
                 root: "items"
@@ -51,7 +51,7 @@ function runSandbox() {
         fields: ["name", "value", "city"],
         proxy: {
             type: "ajax",
-            url: "data/street.json",
+            url: "/tests/ui/data/street.json",
             reader: {
                 type: "json",
                 root: "items"
