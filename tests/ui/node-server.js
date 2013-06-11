@@ -3,5 +3,5 @@ var connect = require('connect')
     , fs   = require('fs')
     , app = connect().use(connect.static(__dirname + '/../../'));
 
-http.createServer(app).listen(3000);
+http.createServer(app).listen(process.env.PORT || 3000);
 fs.writeFileSync(__dirname + '/pid.txt', process.pid, 'utf-8');
