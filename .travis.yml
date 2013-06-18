@@ -11,3 +11,20 @@ before_script:
   - "node tests/ui/node-server.js &"
   - "sleep 3"
 #script: phantomjs tests/ui/siesta-phantomjs.js
+
+env:
+  global:
+  - secure: ! 'm8I9WoLtIbEYowye8aOoT5+hwFVUuRihg7kBcuQccUnu8FzlaIAEfhhRTGrh
+      h37e2noDSlpQx8J130PFsQBi/7EaSpTyjWCq1hEmMgJ+a/F5bvjfnme6jfb/
+      Q8cBlx2ZuTTVNY+9Be4soR/MMQz7y459kyGqg4PCN6vY+Y8ucXI='
+
+after_success:
+  - wget -qO- https://toolbelt.heroku.com/install-ubuntu.sh | sh
+  - git remote add heroku git@heroku.com:extjs-cascadedcombobox-widget.git
+  - echo "Host heroku.com" >> ~/.ssh/config
+  - echo "   StrictHostKeyChecking no" >> ~/.ssh/config
+  - echo "   CheckHostIP no" >> ~/.ssh/config
+  - echo "   UserKnownHostsFile=/dev/null" >> ~/.ssh/config
+  - heroku keys:clear
+  - yes | heroku keys:add
+  - yes | git push heroku master
