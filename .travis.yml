@@ -14,9 +14,7 @@ before_script:
 
 env:
   global:
-  - secure: ! 'm8I9WoLtIbEYowye8aOoT5+hwFVUuRihg7kBcuQccUnu8FzlaIAEfhhRTGrh
-      h37e2noDSlpQx8J130PFsQBi/7EaSpTyjWCq1hEmMgJ+a/F5bvjfnme6jfb/
-      Q8cBlx2ZuTTVNY+9Be4soR/MMQz7y459kyGqg4PCN6vY+Y8ucXI='
+  - secure: "XTlo9yNKD5M7DsYPFAEUIHkrdAvrem8lZDFIkga0XfvKCt1FYMvgjnQ95AVY\nzryWg4O1pNHThSIP8fanygxpTSpbX/+dyhfakj0A3CP/OU8DLcbVfO/LhpZM\n5o5CDGYCCrLCoJnOHsS1XeM/btcu7XdePqhpz+goLJyuWvXiT70="
 
 after_success:
   - wget -qO- https://toolbelt.heroku.com/install-ubuntu.sh | sh
