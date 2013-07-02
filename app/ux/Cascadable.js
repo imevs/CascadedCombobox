@@ -8,7 +8,10 @@ Ext.define('IMEVS.ux.Cascadable', {
 
     filterCallback: function (item) {
         var curVal = this.dependsOn.getValue();
-        return curVal && item.get(this.dependencyField) == curVal;
+        var dependentValue = Ext.isFunction(this.dependencyField)
+            ? this.dependencyField.call(item)
+            : item.get(this.dependencyField);
+        return curVal && dependentValue == curVal;
     },
 
     init: function(cmb) {
@@ -16,9 +19,14 @@ Ext.define('IMEVS.ux.Cascadable', {
             return;
         }
         cmb.dependsOn.on('change', this.onChangeParent, cmb);
-        cmb.store.filters = new Ext.util.MixedCollection();
-        var filters = cmb.store.decodeFilters([Ext.bind(this.filterCallback, cmb)]);
-        cmb.store.filters.addAll(filters);
+
+        var isLocalMode = cmb.queryMode === 'local';
+        if (isLocalMode) {
+            cmb.store.filters = new Ext.util.MixedCollection();
+            var filters = cmb.store.decodeFilters([Ext.bind(this.filterCallback, cmb)]);
+            cmb.store.filters.addAll(filters);
+        }
+
         cmb.store.load();
     }
 });

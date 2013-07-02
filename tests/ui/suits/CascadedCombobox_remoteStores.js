@@ -13,13 +13,14 @@ function runSandbox() {
     Ext.define("KladrStore", {
         extend: 'Ext.data.Store',
         autoLoad: true,
-        fields: ["name", "value"],
+        fields: ["name", "id", "parents"],
         kladrElementType: null,
         proxy: {
             type: "jsonp",
             url: "http://kladr-api.ru/api.php",
             limitParam: '_limit',
-            extraParams: {
+            defaultExtraParams: {
+                withParent: 1,
                 token: '51d170c82fb2b4ec04000001',
                 key: '0c673e93f9ea1a66214017e45ade5547bf0eb205'
             },
@@ -31,59 +32,82 @@ function runSandbox() {
         constructor: function(config) {
             this.callParent(config);
             this.kladrElementType = config.kladrElementType;
-            this.kladrElementType && this.on('beforeload', function() {
-                this.getProxy().setExtraParam('contentType', this.kladrElementType);
+        }
+    });
+
+    Ext.define('KladrCombobox', {
+        extend: 'IMEVS.ux.CascadedCombobox',
+        fetchValuesFromRequests: true,
+        saveToCookie: true,
+        autoDiscoverValues: true,
+        displayField: "name",
+        valueField: "id",
+        renderTo: Ext.getBody(),
+        dependencyField: function() {
+            var value = this.data["parents"] && this.data["parents"][0] && this.data["parents"][0]["id"];
+            if (!value) {
+                //debugger;
+            }
+            return value;
+        },
+        initComponent: function() {
+            var me = this;
+            me.callParent();
+
+            var store = me.getStore();
+            store.on('beforeload', function() {
+                var proxy = store.getProxy();
+                proxy.extraParams = Ext.clone(proxy.defaultExtraParams);
+                store.kladrElementType && proxy.setExtraParam('contentType', store.kladrElementType);
+
+                if (me.dependsOn) {
+                    var dependentStore = me.dependsOn.getStore();
+                    var dependentValue = me.dependsOn.getValue();
+                    dependentValue && proxy.setExtraParam(dependentStore.kladrElementType + 'Id', dependentValue);
+                }
             });
         }
     });
 
-    var city = Ext.create("IMEVS.ux.CascadedCombobox", {
-        fieldLabel: "City",
-        fetchValuesFromRequests: true,
-        saveToCookie: true,
-        autoDiscoverValues: true,
-        store: Ext.create("KladrStore", {
-            fields: ["name", "value", "country"],
-            kladrElementType: 'city'
-        }),
-        renderTo: Ext.getBody(),
-        displayField: "name",
-        valueField: "value",
-        dependencyField: "country"
-//        dependsOn: country
-    });
-
-    var street = Ext.create("IMEVS.ux.CascadedCombobox", {
-        fieldLabel: "Street",
-        fetchValuesFromRequests: true,
-        saveToCookie: true,
-        autoDiscoverValues: true,
-        store: Ext.create("KladrStore", {
-            fields: ["name", "value", "city"],
-            kladrElementType: 'street'
-        }),
-        renderTo: Ext.getBody(),
-        displayField: "name",
-        valueField: "value",
-        dependencyField: "city"
-//        dependsOn: city
-    });
-
-    var region = Ext.create("IMEVS.ux.CascadedCombobox", {
+    var region = Ext.create("KladrCombobox", {
         fieldLabel: "Region",
-        fetchValuesFromRequests: true,
-        saveToCookie: true,
-        autoDiscoverValues: true,
         store: Ext.create("KladrStore", {
-            fields: ["name", "value", "country"],
             kladrElementType: 'region'
-        }),
-        renderTo: Ext.getBody(),
-        displayField: "name",
-        valueField: "value",
-        dependencyField: "country"
-//        dependsOn: country
+        })
     });
+
+    var district = Ext.create("KladrCombobox", {
+        fieldLabel: "District",
+        dependsOn: region,
+        store: Ext.create("KladrStore", {
+            kladrElementType: 'district'
+        })
+    });
+
+    var city = Ext.create("KladrCombobox", {
+        fieldLabel: "City",
+        dependsOn: district,
+        store: Ext.create("KladrStore", {
+            kladrElementType: 'city'
+        })
+    });
+
+    var street = Ext.create("KladrCombobox", {
+        fieldLabel: "Street",
+        dependsOn: city,
+        store: Ext.create("KladrStore", {
+            kladrElementType: 'street'
+        })
+    });
+
+    var building = Ext.create("KladrCombobox", {
+        fieldLabel: "Building",
+        dependsOn: street,
+        store: Ext.create("KladrStore", {
+            kladrElementType: 'building'
+        })
+    });
+
 }
 
 Ext.onReady(runSandbox);
