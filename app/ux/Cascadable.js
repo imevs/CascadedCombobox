@@ -15,9 +15,11 @@ Ext.define('IMEVS.ux.Cascadable', {
     },
 
     init: function(cmb) {
-        if (!cmb.dependsOn) {
-            return;
-        }
+        cmb.dependsOn = cmb.dependsOn && Ext.isString(cmb.dependsOn)
+            ? Ext.ComponentQuery.query('#' + cmb.dependsOn)[0] : cmb.dependsOn;
+
+        if (!cmb.dependsOn) return;
+
         cmb.dependsOn.on('change', this.onChangeParent, cmb);
 
         var isLocalMode = cmb.queryMode === 'local';
@@ -26,7 +28,5 @@ Ext.define('IMEVS.ux.Cascadable', {
             var filters = cmb.store.decodeFilters([Ext.bind(this.filterCallback, cmb)]);
             cmb.store.filters.addAll(filters);
         }
-
-        cmb.store.load();
     }
 });

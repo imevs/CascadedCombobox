@@ -47,5 +47,7 @@ Ext.define('IMEVS.ux.SaveToCookie', {
         } else {
             cmb.getStore().on('load', this.onLoad, this, { single: true, element: cmb });
         }
+        
+        cmb.store.load();
     }
 });
