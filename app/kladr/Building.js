@@ -1,9 +1,9 @@
-Ext.define('IMEVS.ux.kladr.Building', {
-    extend: 'IMEVS.ux.kladr.KladrCombobox',
+Ext.define('IMEVS.kladr.Building', {
+    extend: 'IMEVS.kladr.KladrCombobox',
     id        : 'building',
     fieldLabel: 'Building',
     dependsOn : 'street',
-    store     : Ext.create('IMEVS.ux.kladr.KladrStore', {
+    store     : Ext.create('IMEVS.kladr.KladrStore', {
         kladrElementType: 'building'
     })
 });

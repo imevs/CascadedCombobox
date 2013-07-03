@@ -2,13 +2,13 @@ Ext.Loader.setPath('IMEVS', '../../app');
 Ext.Loader.setConfig({ enabled: true, syncModeEnabled: true, disableCaching: false });
 Ext.require([
     'Ext.data.Store',
-    'IMEVS.ux.kladr.KladrStore',
-    'IMEVS.ux.kladr.KladrCombobox',
-    'IMEVS.ux.kladr.Region',
-    'IMEVS.ux.kladr.District',
-    'IMEVS.ux.kladr.City',
-    'IMEVS.ux.kladr.Street',
-    'IMEVS.ux.kladr.Building',
+    'IMEVS.kladr.KladrStore',
+    'IMEVS.kladr.KladrCombobox',
+    'IMEVS.kladr.Region',
+    'IMEVS.kladr.District',
+    'IMEVS.kladr.City',
+    'IMEVS.kladr.Street',
+    'IMEVS.kladr.Building',
     'IMEVS.ux.Cascadable',
     'IMEVS.ux.AutoDiscover',
     'IMEVS.ux.FetchFromRequest',
@@ -17,11 +17,11 @@ Ext.require([
 ]);
 
 function runSandbox() {
-    Ext.create('IMEVS.ux.kladr.Region');
-    Ext.create('IMEVS.ux.kladr.District');
-    Ext.create('IMEVS.ux.kladr.City');
-    Ext.create('IMEVS.ux.kladr.Street');
-    Ext.create('IMEVS.ux.kladr.Building');
+    Ext.create('IMEVS.kladr.Region');
+    Ext.create('IMEVS.kladr.District');
+    Ext.create('IMEVS.kladr.City');
+    Ext.create('IMEVS.kladr.Street');
+    Ext.create('IMEVS.kladr.Building');
 }
 
 Ext.onReady(runSandbox);

@@ -1,4 +1,4 @@
-Ext.define('IMEVS.ux.kladr.KladrCombobox', {
+Ext.define('IMEVS.kladr.KladrCombobox', {
     extend                 : 'IMEVS.ux.CascadedCombobox',
     fetchValuesFromRequests: true,
     saveToCookie           : true,

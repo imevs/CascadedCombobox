@@ -1,4 +1,4 @@
-Ext.define('IMEVS.ux.kladr.KladrStore', {
+Ext.define('IMEVS.kladr.KladrStore', {
     extend          : 'Ext.data.Store',
     autoLoad        : true,
     fields          : ['name', 'id', 'parents'],

@@ -1,9 +1,9 @@
-Ext.define('IMEVS.ux.kladr.District', {
-    extend: 'IMEVS.ux.kladr.KladrCombobox',
+Ext.define('IMEVS.kladr.District', {
+    extend: 'IMEVS.kladr.KladrCombobox',
     id        : 'district',
     fieldLabel: 'District',
     dependsOn : 'region',
-    store     : Ext.create('IMEVS.ux.kladr.KladrStore', {
+    store     : Ext.create('IMEVS.kladr.KladrStore', {
         kladrElementType: 'district'
     })
 });
