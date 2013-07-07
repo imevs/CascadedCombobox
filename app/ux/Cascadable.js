@@ -18,7 +18,17 @@ Ext.define('IMEVS.ux.Cascadable', {
         cmb.dependsOn = cmb.dependsOn && Ext.isString(cmb.dependsOn)
             ? Ext.ComponentQuery.query('#' + cmb.dependsOn)[0] : cmb.dependsOn;
 
-        if (!cmb.dependsOn) return;
+        if (!cmb.dependsOn) {
+            /**
+             * autoload for store without dependencies
+             * stores with dependencies will
+             * load after parent's store loading
+             */
+            Ext.onDocumentReady(function() {
+                cmb.store.load();
+            });
+            return;
+        }
 
         cmb.dependsOn.on('change', this.onChangeParent, cmb);
 

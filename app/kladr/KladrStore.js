@@ -1,7 +1,6 @@
 Ext.define('IMEVS.kladr.KladrStore', {
     extend          : 'Ext.data.Store',
     alias           : ['kladr.store'],
-    //autoLoad        : true,
     fields          : ['name', 'id', 'parents'],
     kladrElementType: null,
     proxy           : {

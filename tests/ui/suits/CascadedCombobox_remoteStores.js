@@ -20,13 +20,11 @@ Ext.require([
 Ext.define('Ext.data.proxy.Server', {override:'Ext.data.proxy.Server', noCache:false });
 
 function runSandbox() {
-    var cmb = Ext.create('IMEVS.kladr.Region');
+    Ext.create('IMEVS.kladr.Region');
     Ext.create('IMEVS.kladr.District');
     Ext.create('IMEVS.kladr.City');
     Ext.create('IMEVS.kladr.Street');
     Ext.create('IMEVS.kladr.Building');
-
-    cmb.store.load();
 }
 
 Ext.onReady(runSandbox);
