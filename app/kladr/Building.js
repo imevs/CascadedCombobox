@@ -3,7 +3,8 @@ Ext.define('IMEVS.kladr.Building', {
     id        : 'building',
     fieldLabel: 'Building',
     dependsOn : 'street',
-    store     : Ext.create('IMEVS.kladr.KladrStore', {
+    storeParams: {
+        xclass: 'kladr.store',
         kladrElementType: 'building'
-    })
+    }
 });

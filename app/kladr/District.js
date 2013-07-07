@@ -3,7 +3,8 @@ Ext.define('IMEVS.kladr.District', {
     id        : 'district',
     fieldLabel: 'District',
     dependsOn : 'region',
-    store     : Ext.create('IMEVS.kladr.KladrStore', {
+    storeParams: {
+        xclass: 'kladr.store',
         kladrElementType: 'district'
-    })
+    }
 });

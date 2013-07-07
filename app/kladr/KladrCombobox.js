@@ -15,10 +15,14 @@ Ext.define('IMEVS.kladr.KladrCombobox', {
     },
     initComponent          : function () {
         var me = this;
+
+        window.console && console.log('KladrCombobox::initComponent');
+        var store = me.store = Ext.create(me.storeParams);
         me.callParent();
 
-        var store = me.getStore();
         store.on('beforeload', function () {
+            window.console && console.log('KladrCombobox::beforeload');
+
             var proxy = store.getProxy();
             proxy.extraParams = Ext.clone(proxy.defaultExtraParams);
             store.kladrElementType && proxy.setExtraParam('contentType', store.kladrElementType);
