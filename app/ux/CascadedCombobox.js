@@ -4,8 +4,8 @@ Ext.define('IMEVS.ux.CascadedCombobox', {
     plugins: [
         Ext.create('IMEVS.ux.Cascadable'),
         Ext.create('IMEVS.ux.AutoDiscover'),
-        Ext.create('IMEVS.ux.SaveToCookie'),
-        Ext.create('IMEVS.ux.FetchFromRequest')
+        Ext.create('IMEVS.ux.FetchFromRequest'),
+        Ext.create('IMEVS.ux.SaveToCookie')
     ],
 
     static: {
@@ -17,11 +17,5 @@ Ext.define('IMEVS.ux.CascadedCombobox', {
         saveToCookie: false,
         autoDiscoverValues: false,
         fetchValuesFromRequests: false
-    },
-
-    initComponent: function() {
-        var me = this;
-        me.callParent();
     }
-
 });

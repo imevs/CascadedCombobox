@@ -29,3 +29,7 @@ git submodule update
  * extjs 4.1.1
  * siesta 1.1.5-lite
  * js-test-driver 1.3.5
+
+ TODO:
+ * generate permalink
+ * priority between fetching value from cookie and request param

@@ -36,9 +36,8 @@ Ext.define('IMEVS.ux.AutoDiscover', {
         if (!param) return;
 
         var record = cmb.getStore().findRecord('name', param);
-        if (!record) return;
 
-        cmb.select(record);
+        record && cmb.select(record);
     },
 
     init: function(cmb) {

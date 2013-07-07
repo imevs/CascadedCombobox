@@ -21,6 +21,13 @@ Ext.define('IMEVS.ux.SaveToCookie', {
     },
 
     onLoad: function(store, records, successfull, opts) {
+        if (opts.element.getValue()) {
+            opts.element.fireEvent('ignore_cookie');
+            return;
+        }
+
+        if (opts.element.ignoreCookie) return;
+
         var value = this.getStorageValue(opts);
         var record = store.findRecord('name', value);
         record && opts.element.select(record);
@@ -39,6 +46,11 @@ Ext.define('IMEVS.ux.SaveToCookie', {
             return;
         }
         cmb.dependsOn && cmb.dependsOn.on('select', this.createOnSelectParentListener(), this, cmb);
+        cmb.dependsOn && cmb.dependsOn.on('ignore_cookie', function() {
+            this.ignoreCookie = true;
+            this.fireEvent('ignore_cookie');
+        }, cmb);
+
         cmb.on('select', this.onSelect, this);
 
         var isLocalMode = cmb.queryMode === 'local';
