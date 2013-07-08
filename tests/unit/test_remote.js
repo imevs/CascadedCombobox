@@ -33,7 +33,7 @@ AsyncTestCase("Kladr testCase", {
 
                 assertEquals(Ext.data.JsonP.requestCount, 2);
             });
-            window.setTimeout(myCallback, 1000);
+            window.setTimeout(myCallback, 2000);
         });
     }
 });
