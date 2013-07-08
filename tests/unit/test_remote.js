@@ -18,7 +18,7 @@ AsyncTestCase("Kladr testCase", {
 
                 assertEquals(Ext.data.JsonP.requestCount, 1);
             });
-            window.setTimeout(myCallback, 500);
+            window.setTimeout(myCallback, 1000);
         });
     },
     testGetRegionValueFromCookie: function (q) {
@@ -33,7 +33,7 @@ AsyncTestCase("Kladr testCase", {
 
                 assertEquals(Ext.data.JsonP.requestCount, 2);
             });
-            window.setTimeout(myCallback, 500);
+            window.setTimeout(myCallback, 1000);
         });
     }
 });

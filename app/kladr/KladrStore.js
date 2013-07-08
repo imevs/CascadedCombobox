@@ -18,7 +18,7 @@ Ext.define('IMEVS.kladr.KladrStore', {
         }
     },
     constructor     : function (config) {
-        this.callParent(config);
+        this.callParent([config]);
         this.kladrElementType = config.kladrElementType;
     }
 });
