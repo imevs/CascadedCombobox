@@ -30,8 +30,10 @@ Ext.define('IMEVS.ux.AutoDiscover', {
 
     onLoad: function(store, records, successfull, opts) {
         Ext.log('IMEVS.ux.Cascadable >> onLoad');
-
         var cmb = opts.element;
+        if (cmb.getValue()) {
+            return;
+        }
         var param = this.getDefaultComboboxValue(cmb);
         if (!param) return;
 
