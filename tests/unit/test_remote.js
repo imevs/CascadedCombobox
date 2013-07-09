@@ -28,7 +28,7 @@ TestCase("Kladr testCase", {
         assertEquals(Ext.data.JsonP.requestCount, 1);
     },
     testGetRegionValueFromCookie: function (q) {
-        Ext.util.Cookies.set('region', 'Оренбургская');
+        Ext.util.Cookies.set('region', 'Orenburgskaya');
 
         Ext.data.JsonP.callback1(this.regions);
         Ext.data.JsonP.callback2(this.districts);

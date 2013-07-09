@@ -17,7 +17,11 @@ Ext.define('IMEVS.ux.SaveToCookie', {
     },
 
     getStorageValue: function (opts) {
-        return this.getStorage().get(opts.element.fieldLabel.toLowerCase());
+        var key = opts.element.fieldLabel.toLowerCase();
+        var value = this.getStorage().get(key);
+        console.log('getStorageValue.key >> ', key);
+        console.log('getStorageValue.value >> ', value);
+        return value;
     },
 
     onLoad: function(store, records, successfull, opts) {
@@ -30,6 +34,7 @@ Ext.define('IMEVS.ux.SaveToCookie', {
 
         var value = this.getStorageValue(opts);
         var record = store.findRecord('name', value);
+        console.log('onLoad >> ' + (record && JSON.stringify(record.getData())));
         record && opts.element.select(record);
     },
 
