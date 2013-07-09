@@ -1,10 +1,9 @@
 TestCase("Kladr testCase", {
     getFixtureData: function (testFile) {
-        return jQuery.ajax({
+        return Ext.Ajax.request({
             type: "GET",
             url: location.protocol + '//' + location.host + '/test/tests/unit/data_' + testFile + '.json',
-            data: '',
-            async:  false
+            async: false
         }).responseText;
     },
 
