@@ -1,13 +1,14 @@
 TestCase("Kladr testCase", {
     getFixtureData: function (testFile) {
         return Ext.Ajax.request({
-            type: "GET",
-            url: location.protocol + '//' + location.host + '/test/tests/unit/data_' + testFile + '.json',
-            async: false
+            async: false,
+            url: 'http://' + location.host + '/test/tests/unit/data_' + testFile + '.json'
         }).responseText;
     },
 
     setUp: function () {
+        Ext.data.Connection.async = false;
+
         this.regions = JSON.parse(this.getFixtureData('regions'));
         this.districts = JSON.parse(this.getFixtureData('districts'));
 
